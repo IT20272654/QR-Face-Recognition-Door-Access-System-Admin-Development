@@ -1,0 +1,19 @@
+name: securepass-admin
+services:
+  backend:
+    build: ./backend
+    image: 'securepass-admin-be:1.1.0'
+    ports:
+      - '5000:5000'
+    environment:
+      - NODE_ENV=production
+    restart: always
+
+  frontend:
+    build: ./frontend
+    image: 'securepass-admin-fe:1.1.0'
+    ports:
+      - '3000:80'
+    depends_on:
+      - backend
+    restart: always
